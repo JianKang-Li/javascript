@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>history对象</title>
+    </head>
+    <body>
+        <!-- 
+        3.2. history对象
+        history对象是历史对象。包含用户(在浏览器窗口中)访问过的URL。history对象是window对象的一部分，
+        可通过window.history 属性对其进行访问。
+        history对象的属性: length，返回浏览器历史列表中的URL数量。history对象的方法:
+        back():加载history列表中的前一个URL。
+        forward():加载历史列表中的下一个URL。当页面第一次访问时，还没有下一个url。
+        go(number|URL):URL参数使用的是要访问的URL。而 number参数使用的是要访问的URL在History的URL
+        列表中的相对位置。go(-1)，到上一个页面
+
+        -->
+    <h2>第一个页面</h2>
+    <a href="页面2.html">跳转</a>
+    <button type="button" onclick="window.history.go(2)">前进</button>   
+        
+    <script type="text/javascript">
+        console.log(window.history.length);
+    </script>
+        
+    </body>
+</html>

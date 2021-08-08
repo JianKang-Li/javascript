@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>DOM对象</title>
+    </head>
+    <body>
+        <!--
+        每个载入浏览器的HTML文档都会成为Document对象。Document对象使我们可以从脚本中对HTML页
+        面中的所有元素进行访问。Document对象是Window对象的一部分，可通过window.document 
+        属性对其进行访问。
+        
+        4.1.节点
+        加载HTML页面时，Web浏览器生成一个树型结构，用来表示页面内部结构。DOM将这种树型结构理解
+        为由节点组成，组成一个节点树。对于页面中的元素，可以解析成以下几种类型的节点:
+        节点类型            HTML内容              例如
+        
+        文档节点            文档本身              整个文档document  
+        
+        元素节点            所有的HTML元素        <a>、 <div>、<p>
+        
+        属性节点            HTML元素内的属性      id、href、name. class
+        
+        文本节点            元素内的文本          hello
+        
+        注释节点            HTML中的注释          
+        
+        
+        
+        2.1.获取节点
+        在进行增、删、改的操作时，都需要指定到一个位置，或者找到一个目标，
+        此时我们就可以通过Document对象提供的方法，查找、定位某个对象（也就是我们说的节点)。
+        注意:操作dom必须等节点初始化完毕后，才能执行。处理方式两种:
+        (1)把script调用标签移到html末尾即可;
+        (2)使用onload事件来处理JS，等待html 加载完毕再加载 onload事件里的JS。
+        window.onload = function () {//预加载html后执行};
+        获取方式如下:
+        方法                        描述
+        
+        getElementById()            根据id获取dom对象，如果id重复，那么以第一个为准
+        
+        getElementsByTagName()      根据标签名获取dom对象数组
+        
+        getElementsByClassName()    根据样式名获取dom对象数组
+        
+        getElementsByName()         根据name属性值获取dom对象数组，常用于多选获取值
+        
+        
+        -->
+        <p id="p1" class="para">这是一个段落<span>文本</span></p>
+        <p id="p2" class="para">这又是一个段落</p>
+        <input type="text" name="txt" />
+        <input type="checkbox" name="hobby" value="游泳"/>游泳
+        <input type="checkbox" name="hobby" value="篮球"/>篮球
+        <input type="checkbox" name="hobby" value="足球"/>足球
+        <hr/>
+        <a href="javascript:void(0)" onclick="testById()">按照id获取</a>
+        <a href="javascript:void(0)" onclick="testByName()">按照name获取</a>
+        <a href="javascript:void(0)" onclick="testByTagName()">按照标签名获取</a>
+        <a href="javascript:void(0)" onclick="testByclass()">按照class获取</a>
+        
+        <hr>
+        <script type="text/javascript">
+        function testById(){//以第一个为准
+         var p=document.getElementById("p1");
+            console.log(p);
+        }
+        
+        
+        function testByName(){
+            var hobby=document.getElementsByName("hobby");
+            console.log(hobby);
+        }
+        
+        function testByTagName(){
+            var inputs=document.getElementsByTagName("input");
+            console.log(inputs);
+            for(var i=0;i<inputs.length;i++)
+            {
+               console.log(inputs[i].type); 
+               console.log(inputs[i].value);
+               if(inputs[i].type=="checkbox")
+               {
+                   console.log(inputs[i].checked);
+               }
+            }
+        }
+        
+        function  testByclass(){
+            var para=document.getElementsByClassName("para");
+            console.log(para);
+            for(var p=0;p<para.length;p++)
+            {
+                console.log(para[p].id);
+            }
+        }
+        </script>
+        
+        <!-- 
+        2.1.创建节点
+        方法                          描述
+        
+        createElement()               创建一个新的节点，需要传入节点的标签名称，返回创建的元素对象
+        
+        createTextNode()              创建一个文本节点，可以传入文本内容
+        
+        innerHTML                     也能达到创建节点的效果，直接添加到指定位置了
+        
+        2.2.插入节点
+        方法                  描述
+        
+        write()               将任意的字符串插入到文档中
+        
+        appendChild()         向元素中添加新的子节点，作为最后一个子节点
+        
+        insertBefore()        向指定的已有的节点之前插入新的节点newltem:要插入的节点exsitingltem:
+                              参考节点需要参考父节点
+        -->
+        
+        <button onclick="addPara();">添加段落</button>
+        <button onclick="addImg();">添加图片</button>
+        <button onclick="addTxt();">添加文本框</button>
+        <button onclick="addoptions()">添加选项</button>
+        <select name="music">
+            <option value="-1">你心内的一首歌</option>
+            <option value="0">南山南</option>
+            <option value="1">喜欢你</option>
+        </select>
+        <hr />
+        <div id="container">
+            
+        </div>
+        
+        
+        <hr>
+        
+        
+        
+        
+        <script type="text/javascript">
+        function addPara(){
+            
+            /* //创建p元素
+            var p=document.createElement("p");
+            console.log(p);
+            //创建文本节点
+            var txt=document.createTextNode("这是文本节点");
+            console.log(txt);            
+            //将文本节点追加到p标签中
+            p.appendChild(txt);
+            div.appendChild(p); 
+            //获取容器
+            var div=document.getElementById("container");
+            */
+           
+            /* var div=document.getElementById("container");
+            var p=document.createElement("p");
+            p.innerHTML="这也是文本";
+            console.log(p);
+            div.appendChild(p); */
+            
+            var div=document.getElementById("container");
+            var p="<p>这是文本</p>";
+            div.innerHTML+=p;
+        }
+        
+        function addImg(){
+            var div=document.getElementById("container");
+            /* //方式一
+             var img=document.createElement("img");
+             console.log(img);
+             //设置属性
+             img.src="img/pic1.jpg";
+             img.width="150";//不用px
+             img.height="100";
+             div.appendChild(img);
+             */
+            
+            //方式二
+            /* var img=document.createElement("img");
+            img.setAttribute("src","img/pic1.jpg");
+            img.setAttribute("width","150");
+            img.setAttribute("height","100");
+            div.appendChild(img); */
+            
+            
+            //方式三
+            var img="<img src='img/pic1.jpg' width='150px' height='100px'>";
+            div.innerHTML+=img;
+        }
+        
+        function addTxt(){
+            var div=document.getElementById("container");
+            
+            /* var inp=document.createElement("input");
+            inp.type="text";
+            div.appendChild(inp); */
+            
+            /* var inp=document.createElement("input");
+            inp.setAttribute("type","text");
+            div.appendChild(inp); */
+            
+            
+            var inp="<input type='text'/>";
+            div.innerHTML+=inp;
+        }
+        
+        
+        function addoptions(){
+            var music=document.getElementsByName("music")[0];
+            
+            /* var opt=document.createElement("option");
+            opt.value="2";
+            opt.text="光年之外";
+            music.appendChild(opt); */
+            
+            
+            /* var opt=document.createElement("option");
+            opt.value="2";
+            opt.text="倒数";
+            music.options.add(opt); */
+            
+            
+            var opt="<option value='2'>我的秘密</option>";
+            music.innerHTML+=opt;
+            
+        }
+        </script>
+        <ul>
+            <li id="red">红色</li>
+            <li>蓝色</li>
+            </ul>
+            
+        
+        <script type="text/javascript">
+        
+            document.write("<h2>你好</h2>");
+        
+            var li =document.createElement("li");
+            
+            var txt=document.createTextNode("粉色");
+            
+            li.appendChild(txt);
+            document.getElementById("red").parentElement.insertBefore(li,document.getElementById("red"));
+        </script>
+    </body>
+</html>

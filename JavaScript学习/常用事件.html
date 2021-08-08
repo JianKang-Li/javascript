@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>事件</title>
+    </head>
+    <body>
+        <!-- 
+        load加载事件：
+            当页面加载完毕后执行的事件
+            
+        常用事件：
+            onload:当页面或图像加载完后立即触发
+            onblur:元素失去焦点
+            onfocus:元素获得焦点
+            onclick:鼠标点击某个对象
+            onchange:用户改变域的内容
+            onmouseover:鼠标移动到某个元素上
+            onmouseout:鼠标从某个元素上离开
+            onkeyup:某个键盘的键被松开
+            onkeydown:某个健盘的键被按下
+        事件流:
+            接收事件的顺序
+        事件流的顺序:事件冒泡和事件捕获
+        事件冒泡（从小到大）
+            事件开始时由最具体的元素接受，然后逐级向上传播到较为不具体的节点（文档）
+        事件捕获〔从大到小)
+            事件开始时由document对象接受,然后逐级向下传播到具体的节点
+
+        -->
+        姓名：<input type="text" id="uname"/>
+        <hr>
+        城市：<select id="city">
+            <option value="null">请选择城市</option>
+            <option value="shanghai">上海</option>
+            <option value="beijing">北京</option>
+            <option value="guizhou">贵州</option>
+            </select>
+        <script type="text/javascript">
+         //onload
+         window.onload=function(){
+            console.log("页面加载完毕");
+         }
+         
+         //onblur和onfocus
+         var uname=document.getElementById("uname");
+         uname.onblur=function(){
+             console.log("文本框失去焦点");
+         }
+         uname.onfocus= function(){
+             console.log("文本框获得焦点");
+         }
+          
+         var city=document.getElementById("city");
+         city.onchange=function(){
+             console.log(city.value);
+         }
+         
+         uname.onkeydown=function(){
+             console.log("按键按下");
+         }
+         
+         uname.onkeyup=function(){
+             console.log("按键松开");
+         }
+         
+        </script>
+        
+        
+    </body>
+</html>

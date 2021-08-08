@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>函数的调用</title>
+    </head>
+    <body>
+        
+        
+        <script type="text/javascript">
+        /* 
+        标识符和关键字：
+        标识符就是一个名字，用来给变量和函数进行命名
+        规则：1、_、$、数字组成、中文组成
+        2、不能以数字开头
+        3、不能是关键字和保留字
+        4、严格区分大小写
+        规范：1、见名知意
+        2、驼峰式命名或下划线规则
+        
+        关键字:
+        arguments、break、case、 catch、class、 const、continue、debugger、default、delete、
+        do.else、enum、eval、export、extends、false、finally、for、function、if、implements、
+        import.in、instanceof、interface、let. new、nul1、package. private.protected、public、
+        return、static、super、switch、this、throw、true、try、typeof、var、void、while、with、
+         yield、Infinity、NaN、 undefined
+
+        
+        
+        变量：
+        变量赋值：
+        var a;
+        a = 10;
+        //先声明再赋值
+        var a = 10;//声明同时赋值
+        注意点：
+        (1)若只声明而没有赋值，则该变量的值为undefined。
+        (2）变量要有定义才能使用，若变量未声明就使用，JavaScript会报错，告诉你变量未定义。
+        (3）可以在同一条var命令中声明多个变量。
+        (4）若使用var重新声明一个已经存在的变量，是无效的。
+        (5）若使用var重新声明一个已经存在的变量且赋值，则会覆盖掉前面的值
+        (6)JavaScript是一种动态类型、弱类型语言，也就是说，变量的类型没有限制，可以赋予各种类型的值。
+        变量提升
+        JavaScript引擎的工作方式是，先解析代码，获取所有被声明的变量，然后再一行一行地运行。这造成的结果，
+        就是所有的变量的声明语句，都会被提升到代码的头部，这就叫做变量提升。
+        注：只有用var声明的变量才会做变量提升，可不用var声明
+        
+        
+        类型转换：
+        1、自动类型转换
+        值               字符串              数字         布尔值
+        undefined       "undefined"         NaN          false
+        
+        null            "null"              0            false
+        
+        true            "true"              1            true
+        
+        false           "false"             0            false
+        
+        ""(空字符串）    ""                  0            false
+        
+        "1.5"           "1.5"               1.5          true
+        
+        "one"           "one"              NaN           true
+        
+        0               "0"                 0            false
+        
+        -0              "0"                 0            false
+        
+        NaN(非数字)             "NaN"               NaN          false
+        
+        Infinity(无穷)        "Tnfinity"          Infinity     true
+        
+        -Infinity       "-Infinity"         -Infinity    true
+        
+        1               "1"                 1            true
+        
+        2、函数转换（string to number）
+        全局转换函数：parseInt()和parseFloat()
+       
+        3、显示转换
+        几乎每个数对象都提供了toString()函数将内容转换为字符串形式，其中Number提供的toString()函数可以将数字转换为字符串。
+        Number还提供了toFixed()函数将根据小数点后指定位数将数字转为字符串，四舍五入
+        
+        JS为Number、Boolean、String对象提供了构造方法，用于强制转换其他类型的数据。此时操作的是整个数据，而不是部分。
+        最后一种强制类型转换方法String()是最简单的，因为它可把任何值转换成字符串。要执行这种强制类型转换，只需要调用作
+        为参数传递进来的值的toString0)方法，即把1转换成"1"，把 true转换成"true "，把false转换成"false "，依此类推。
+        强制转换成字符串和调用toString)方法的唯一不同之处在于，对null或undefined值强制类型转换可以生成字符串而不引发错误:
+
+
+
+        
+        
+        1、如果使用函数声明语句会有函数名提升的效果；
+        2、JS中方法没有重载，如果出现同名方法则覆盖
+        */
+       //将内容转换为字符串形式
+       var data = 10;
+       console.log(data.toString());
+       //根据小数点后指定位数将数字转为字符串，四舍五入
+       data = 1.4;
+       console.log(data.toFixed(0));
+       data = 1.49;
+       console.log(data.toFixed(1));
+       //不能对null和undefined使用
+       /* console.log(data.toString());
+       data = undefined;
+       console.log(data.toString()); */
+       
+       console.log(Number(false)); 
+       //0
+       console.log(Number(true)); 
+       //1
+       console.log(Number(undefined)); 
+       //NaN
+       console.log(Number(null)); 
+       //0
+       console.log(Number("5.5")); 
+       //5.5
+       console.log(Number("56")); 
+       //56
+       console.log(Number("5.6.7")); 
+       //NaN
+       console.log(Number(new Object())); 
+       //NaN
+       console.log(Number(100)); 
+       //100
+       console.log(Boolean("")); 
+       //false - empty string
+       console.log(Boolean("hi")); 
+       //true - non-empty string
+       console.log(Boolean(100)); 
+       //true - non-zero number
+       console.log(Boolean(null)); 
+       //false - nu11
+       console.log(Boolean(0));  
+       //false - zero
+       console.log(Boolean(new Object()));
+       //true - object
+
+       var s1 = String(null); //"null"
+       console.log(s1);
+       var oNull = null;
+       //var s2 = oNull.toString(); // won't work，causes an error
+
+ 
+       
+        
+            
+        </script>
+        
+    </body>
+</html>

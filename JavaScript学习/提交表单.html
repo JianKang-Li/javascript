@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>提交表单</title>
+    </head>
+    <body>
+        <!-- 
+        5.3.提交表单
+        (1）使用普通button按钮+onclick事件+事件中编写代码:
+        获取表单.submit();
+        (2）使用submit按钮+onclick="return函数()"+函数编写代码:
+        最后必须返回: return true | false;
+        (3）使用submit按钮/图片提交按钮＋表单onsubmit="return 函数();""+函数编写代码:
+        最后必须返回:return true | false;
+
+        -->
+        <form id= "myform1" name="myform2" action="http://www.baidu.com" method="get">
+        姓名：<input name="test" id="uname" />
+        <input type="button" value="提交表单" onclick="submitForm()"/>
+        </form>
+
+        <hr>
+        <form id= "myform2"  action="http://www.baidu.com" method="get">
+        姓名：<input name="test" id="uname2" />
+        <input type="submit" value="提交表单" onclick="return submitForm2()"/>
+        </form>
+        
+        <hr>
+        <form id= "myform3"  action="http://www.baidu.com" method="get" onsubmit="return submitForm3()">
+        姓名：<input name="test" id="uname3" />
+        <input type="submit" value="提交表单"/>
+        </form>
+        <script type="text/javascript"> 
+        //方式一
+          
+        function submitForm(){
+            //获取姓名文本框的值
+            var uname=document.getElementById("uname").value;
+            if(uname.trim() ==""||uname ==null){
+               alert("姓名不为空!");
+               return;
+            }
+            else{
+               //提交表单
+               document.getElementById("myform1").submit();
+                
+            }
+        }  
+         
+         
+        function  submitForm2()  {
+           var uname2=document.getElementById("uname2").value;
+           if(uname2.trim() ==""||uname2 ==null){
+              alert("姓名不为空!");
+              return false; 
+           }
+           else{
+              //提交表单
+              return true;
+               
+           }
+        }
+        
+        
+        function  submitForm3()  {
+            var uname3 = document.getElementById("uname3").value;
+            if(uname3.trim() =="" || uname3 ==null){
+             alert("姓名不为空!");
+             return false;
+             
+            }
+            else{
+              //提交表单
+              return true;   
+            }
+        }
+        </script>
+    </body>
+</html>

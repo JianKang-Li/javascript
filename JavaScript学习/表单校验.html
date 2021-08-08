@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>表单校验</title>
+    </head>
+    <body>
+        <form id="myform" name="myform">
+        姓名:<input type="text" id="uname" name="uname" /><br />
+        密码:<input type="password" id="upwd" name="upwd" /><br />
+        年龄:<input type="radio" name="uage" value="e" checked="checked" />小屁孩<input type="radio" name="uage" value="1"/>你懂得<br />
+        爱好:<input type="checkbox" name="ufav" value="篮球"/>篮球
+        <input type="checkbox" name="ufav" value="爬床"/>爬床
+        <input type="checkbox" name="ufav" value="代码"/>代码<br />
+        来自:<select id="ufrom" name= "ufrom">
+        <option value="-1" selected="selected">请选择</option>
+        <option value="0">北京</option>
+        <option value="1">上海</option>
+        <option value="2">贵州</option>
+        </select><br />
+        <div id="validate" style="color: red ; "></div>
+        <button type="button" onclick="checkForm();">提交</button>
+        <button type="button" onclick="resetForm();">重置</button>
+        </form>
+        <script type="text/javascript">
+        function $(id){
+            return document.getElementById(id);
+        }  
+        function resetForm(){
+            $("myform").reset();
+        }
+        /*
+        要求:
+        1、验证用户名
+        1)不能为空
+        2)长度为6-12位
+        2、验证密码
+        1)不能为空*
+        2)长度为6-12位
+        3)不能包含用户名
+        3、年龄:必须选择你懂得
+        4、爱好:必须选择一项
+        5、来自:必须选择一项
+        满足以上条件
+        1、弹出所有的内容
+        2、提交表单
+        否则
+        1、说明错误原因
+        2、不能提交表单
+        */
+       function isEmpty(str){//判断字符串是否为空
+           if(str==null||str.trim()=="")
+           {
+               return true;
+           }
+           else{
+               return false;
+           }
+           
+       }
+       
+        function checkForm(){
+          var uname=$("uname").value;
+            if(isEmpty(uname)){
+                //通过innerHTML赋值
+                $("validate").innerHTML='用户名不能为空';
+                return;
+            }
+            if(uname.length < 6 || uname.length > 12)
+            {
+              $("validate").innerHTML='用户名长度在6-12位之间';
+                return;
+            }
+           
+            
+            
+            
+            //获取密码
+            var upwd=$("upwd").value;
+            if(isEmpty(upwd)){
+                //通过innerHTML赋值
+                $("validate").innerHTML='密码不能为空';
+                return;
+            }
+            if(upwd.length < 6 || upwd.length > 12)
+            {
+              $("validate").innerHTML='密码长度在6-12位之间';
+                return;
+            }
+            if(upwd.indexOf(uname)>0)
+            {
+              $("validate").innerHTML='密码不包含用户名'; 
+               return;
+            }
+            
+            //获取年龄
+            var ages=document.getElementsByName("uage");
+            //获取第二个单选框是否被选中
+            var cked=ages[1].checked;
+            if(!cked){
+               $("validate").innerHTML='年龄必须选择你懂的！';  
+            }
+            
+            //获取爱好
+            var ufavs=document.getElementsByName("ufav");
+            var favs='';
+            for(var i=0;i<ufavs.length;i++)
+            {
+              if(ufavs[i].checked){
+                  favs+=ufavs[i].value+",";
+              }  
+            }
+            //判断是否选中
+            if(isEmpty(favs)){
+                $("validate").innerHTML='必须选择一项爱好';
+                return;
+            }
+            favs=favs.substring(0,favs.length-1);
+            console.log(favs);
+            
+            //获取下拉框
+            var city=$("ufrom").value;
+            if(city==-1){
+             $("validate").innerHTML='请选择你的城市';
+             return;   
+            }
+            
+          $("validate").innerHTML='';
+            
+           //设置提交地址
+           $("myform").action="http://www.baidu.com";
+           $("myform").submit();
+        }
+
+        </script>
+        
+    </body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>BOM对象</title>
+    </head>
+    <body>
+     <!-- 
+     BOM对象
+     BOM的核心对象是window，它表示浏览器的一个实例。window对象有双重角色，它既是通过JavaScript
+     访问浏览器窗口的一个接口，又是ECMAScript规定的Global对象。这意味着在网页中定义的任何一个对
+     象、变量和函数，都以window作为其Global对象，因此有权访问parseInt()等方法。如果页面中包含
+     框架，则每个框架都拥有自己的window对象，并且保存在frames集合中。在frames集合中，可以通过数
+     值索引(从0开始，从左至右，从上到下)或者框架的名称来访问相应的window对象。
+    
+    Window对象方法
+    1.系统对话框
+    浏览器通过（实际是window对象的方法) alert()、confirm()、prompt()方法可以调用系统对话框向
+    用户显示消息。
+    (1)消息框:alert，常用。
+    alert()方法用于显示带有一条指定消息和一个OK按钮的警告框,
+    (2)输入框:prompt，返回提示框中的值。
+    prompt()方法用于显示可提示用户进行输入的对话框。参数(可选)
+    第一个参数:要在对话框中显示的纯文本。
+    第二个参数:默认的输入文本。
+    (3)确认框: confirm，返回true /false.
+    confirm()方法用于显示一个带有指定消息和OK及取消按钮的对话框。
+    
+    
+    2.打开窗口
+    window.open()方法既可以导航到一个特定的URL也可以用来打开一个新的窗口
+    
+    
+    3.关闭窗口
+    window.close():关闭窗口。
+
+     -->   
+    <button type="button" onclick="testAlert()">消息框</button>
+    <button type="button" onclick="testPrompt()">输入框</button>
+    <button type="button" onclick="testConfirm()">确认框</button>
+    
+    
+    <button type="button" onclick="window.open('http://bilibili.com','_black')">打开窗口</button>
+    
+    
+    <input type="button" onclick="window.close()" value="关闭窗口"/>
+    <script type="text/javascript">
+    function testAlert(){
+        alert("Hello");//会阻止后面代码，除非点击确定
+        console.log("消息正常显示");
+    }
+    
+    function testPrompt(){
+        var uname=window.prompt("请输入密码","1234");
+        console.log(uname);
+    }
+    
+    function testConfirm(){
+        var ok=window.confirm("请确定输入正确");
+        console.log(ok);
+    }
+    </script>
+    </body>
+</html>

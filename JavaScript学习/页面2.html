@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>页面2及location对象</title>
+    </head>
+    <body>
+        <h2>第二个页面</h2>
+        <a href="页面3.html">跳转</a>
+        <button type="button" onclick="window.history.forward()">前进</button>
+        <button type="button" onclick="window.history.back()">回去</button>
+        
+        <hr>
+        <button type="button" onclick="test()">链接</button>
+        <button type="button" onclick="rush()">刷新</button>
+        <button type="button" onclick="replace()">replace</button>
+        <!-- 
+        3.3.location对象
+        location对象是window对象之一，提供了与当前窗口中加载的文档有关的信息，
+        还提供了一些导航功能。也可通过window.location 属性来访问。
+        location对象的属性  href:设置或返回完整的URL
+        location对象的方法
+        reload():重新加载当前文档。
+        replace():用新的文档替换当前文档。(不可后退)
+
+        -->
+        
+        <script type="text/javascript">
+        console.log(window.history.length);
+        
+        var url=window.location.href;
+        console.log(url);
+         
+         
+         function test(){
+             window.location.href="http://bilibili.com";
+         } 
+           
+           
+        function replace(){
+            window.location.replace("http://bilibili.com");
+        }
+        
+        
+        function rush(){
+            window.location.reload();
+        }
+        </script>
+    </body>
+</html>
